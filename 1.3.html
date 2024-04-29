@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width , initial-scale=1">
+  <!-- 
+   增加这句后，可以看到浏览器的DevTools面板的模拟移动设备状态的变化
+  --> 
+  <title>读好书、练思维、勤编程</title>
+  <style>
+   
+    *{
+      margin:10PX;
+      text-align: center;
+    }
+    header{
+       border: 2px solid red;
+       height: 15%;
+       font-size: 1.2em;
+
+    }
+    main{
+      border: 2px solid blue;
+      height: 65%;
+      font-size: 1.1em;
+    }
+    nav{
+      border: 5px solid blue;
+      height: 10%;
+      font-size: 1.1em;
+    }
+    footer{
+      border: 2px solid yellow;
+      height: 10%;
+      
+    }
+   body{
+    background-image:url('lesson/bitCoin.jpg');
+    background-size: cover;
+    position: relative;
+  }
+  #aid{
+    position:absolute;
+    border: 3px solid blue;
+    left: 600px;
+    top:0px;
+ 
+  }
+  #bookface{
+    width: 80%;
+    height: 80%;
+    border: 2px solid red;
+    background-color: bisque;
+    margin: auto;
+  }
+  </style>
+  
+ </head> 
+ <body>
+  <header>
+  <p id = "book">中国电影赏析</p>
+  </header>
+  <nav>
+    <button>导航一</button>
+    <button>导航二</button>
+    <button>导航三</button>
+  </nav>
+   <main id = 'main'>
+    <div id = 'bookface'>书的封面</div>
+    
+	  软件内容区
+    
+   </main>
+   <body>
+    
+   </body>
+  <footer> 
+ <p id=" statusInfo">
+	 刘鑫 江西科技师范大学 2022--2025
+</p>
+  </footer> 
+  <div id=""aid><p>用户键盘响应区</p></div>
+ <script>
+var UI = {};
+if (window.innerWidth>600){
+  UI.appwidth = 600;
+}else{
+  UI.appwidth = window.innerWidth
+}
+
+UI.appHeight = window.innerHeight;
+
+let baseFont = UI.appwidth / 20;
+//通过更改body对象的字体大小，这个属性会被遗传到body的子子孙孙
+document.body.style.fontSize = baseFont + "px";
+//通过把body对象的高度设置为屏幕的高度，通过css代码对body子对象height百分比的分配，实现全屏，从而实现我们响应式设计的目标
+document.body.style.width = UI.appwidth + "px";
+document.body.style.height = UI.appHeight-70 + "px";
+if(window.innerWidth<1000){
+    $("aid").style.display="none";
+}
+$("aid").style.width=UI.innerWidth-UI.appwidth-30+"px";
+$("aid").style.style.height=UI.appHeight-60 +"px";
+
+//尝试对鼠标设计UI控制
+var mouse={};
+mouse.isDown = false;
+mouse.x=0;
+mouse.y=0;
+mouse.deltax=0;
+$("bookface").addEventListener("mousedown",function(ev){
+    mouse.isDown=true;
+    mouse.x=ev.pageX;
+    mouse.y=ev.pagey;
+
+    $("bookface").textContent = "鼠标正在移动，坐标为:"+"("+x+","+y+")";
+
+});
+$("bookface").addEventListener("mousedown",function(ev){
+    mouse.isDown=false;
+    mouse.x=ev.pageX;
+    mouse.y=ev.pageY;
+    $("bookface").textContent = "鼠标正在移动，坐标为:"+"("+x+","+y+")";
+
+});
+$("bookface").addEventListener("mousedown",function(ev){
+    ev.preventDefault();
+
+    if(mouse.isDown){}
+    let x=ev.pageX;
+    let y=ev.pageY;
+    if(mouse.isDown){
+    console.log=("鼠标正在移动，坐标为；"+"("+x+","+y+")");
+    $("bookface").textContent = "鼠标正在移动，坐标为:"+"("+x+","+y+")";
+}
+});
+
+function $(ele){
+        if (typeof ele !== 'string'){
+           throw("自定义的$函数参数的数据类型错误，实参必须是字符串！");
+           return
+        }
+        let dom = document.getElementById(ele) ;
+          if(dom){
+            return dom ;
+          }else{
+            dom = document.querySelector(ele) ;
+            if (dom) {
+                return dom ;
+            }else{
+                throw("执行$函数未能在页面上获取任何元素，请自查问题！");
+                return ;
+            }
+          }
+       } //end of $
+ </script>
+ </body>
+</html>
